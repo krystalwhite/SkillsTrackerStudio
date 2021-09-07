@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @ResponseBody
-@RequestMapping
+//@RequestMapping
 
 public class SkillsController {
 
@@ -67,10 +67,12 @@ public class SkillsController {
     }
 
 
-    @RequestMapping(value = "skills", method = {RequestMethod.GET, RequestMethod.POST})
+//    @RequestMapping(value = "skills", method = {RequestMethod.GET, RequestMethod.POST})
+    @PostMapping("form")
     @ResponseBody
     public String compileNameAndLanguages(@RequestParam String name, @RequestParam String firstLanguageSelect, @RequestParam String secondLanguageSelect, @RequestParam String thirdLanguageSelect) {
-        String response = "<html>" +
+        String response =
+                "<html>" +
                 "<body>" +
                 "<p style='color:#0394fc'><font size='+15'>Name: " + name + "</font></p>" +
                 "<ol>" +
@@ -80,6 +82,17 @@ public class SkillsController {
                 "</ol>" +
                 "</body>" +
                 "</html>";
+
+//                        "<html>" +
+//                        "<body>" +
+//                        "<p style='color:#0394fc'><font size='+15'>Name: " + name + "</font></p>" +
+//                        "<ol>" +
+//                        "<font size='+5'><li>" + firstLanguageSelect + "</li>" +
+//                        "<li>" + secondLanguageSelect + "</li>" +
+//                        "<li>" + thirdLanguageSelect + "</li></font>" +
+//                        "</ol>" +
+//                        "</body>" +
+//                        "</html>";
 
         return response;
     }
