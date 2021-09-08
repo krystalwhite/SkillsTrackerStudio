@@ -5,12 +5,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@ResponseBody
 //@RequestMapping
 
 public class SkillsController {
 
+
+//    the @ResponseBody means you don't need the <html><body> tags
     @GetMapping("/")
+    @ResponseBody
     public String skillsList() {
         String html = "<html>" +
                 "<body>" +
@@ -27,12 +29,15 @@ public class SkillsController {
     }
 
 
-    @GetMapping("form")
+//    "<form method='post'>" instead of <form action='skills'>
+
+    @GetMapping("/form")
+    @ResponseBody
     public String skillsForm() {
         return "<html>" +
                 "<body>" +
                 "<form action = 'skills'>" +
-                "<p>Name: </p>"+
+                "<label>Name: </label>"+
                 "<input type='text' name='name'>" +
                 "<br></br>" +
 
@@ -69,9 +74,12 @@ public class SkillsController {
 
 
     @RequestMapping(value = "skills", method = {RequestMethod.GET, RequestMethod.POST})
-//    @PostMapping("form")
+//    @PostMapping("/form")
     @ResponseBody
-    public String compileNameAndLanguages(@RequestParam String name, @RequestParam String firstLanguageSelect, @RequestParam String secondLanguageSelect, @RequestParam String thirdLanguageSelect) {
+    public String compileNameAndLanguages(@RequestParam String name,
+                                          @RequestParam String firstLanguageSelect,
+                                          @RequestParam String secondLanguageSelect,
+                                          @RequestParam String thirdLanguageSelect) {
         String response =
 //                "<html>" +
 //                "<body>" +
